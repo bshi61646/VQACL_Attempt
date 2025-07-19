@@ -1,3 +1,25 @@
+import json
+import os
+
+# --- Robust Path Correction ---
+# Get the absolute path to the directory where this script is located.
+# This makes the script independent of where it's run from.
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the full, absolute path to the JSON files by joining the script's directory
+# with the relative path to the datasets folder.
+ques_id_path = os.path.join(script_dir, 'datasets', 'QuesId_task_map.json')
+img_id_path = os.path.join(script_dir, 'datasets', 'ImgId_cate_map.json')
+# --- End of Correction ---
+
+with open(ques_id_path) as fp:
+    QuesId_task_map = json.load(fp)
+
+with open(img_id_path) as fp:
+    ImgId_cate_map = json.load(fp)
+
+print("Success to load the QuesId_task_map and ImgId_cate_map")
+
 import random
 seed = 66666
 
