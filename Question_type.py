@@ -15,13 +15,14 @@ ques_id_path = os.path.join(PROJECT_ROOT, 'datasets', 'QuesId_task_map.json')
 img_id_path = os.path.join(PROJECT_ROOT, 'datasets', 'ImgId_cate_map.json')
 # --- END OF CORRECTION ---
 
+# This block now uses the correct, absolute paths.
 with open(ques_id_path) as fp:
     QuesId_task_map = json.load(fp)
 
 with open(img_id_path) as fp:
     ImgId_cate_map = json.load(fp)
 
-print("Success to load the QuesId_task_map and ImgId_cate_map")
+print("Success to load the QuesId_task_map and ImgId_cate_map using absolute paths.")
 
 seed = 66666
 
