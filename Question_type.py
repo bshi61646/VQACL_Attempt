@@ -1,5 +1,8 @@
 import json
 import os
+import random
+import matplotlib.pyplot as plt
+import numpy
 
 # --- Robust Path Correction ---
 # Get the absolute path to the directory where this script is located.
@@ -7,9 +10,11 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Construct the full, absolute path to the JSON files by joining the script's directory
-# with the relative path to the datasets folder.
-ques_id_path = os.path.join(script_dir, 'datasets', 'QuesId_task_map.json')
-img_id_path = os.path.join(script_dir, 'datasets', 'ImgId_cate_map.json')
+# with the relative path to the datasets folder. The '..' moves up one level from
+# where the training script calls this, to the project root.
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
+ques_id_path = os.path.join(project_root, 'datasets', 'QuesId_task_map.json')
+img_id_path = os.path.join(project_root, 'datasets', 'ImgId_cate_map.json')
 # --- End of Correction ---
 
 with open(ques_id_path) as fp:
@@ -20,7 +25,6 @@ with open(img_id_path) as fp:
 
 print("Success to load the QuesId_task_map and ImgId_cate_map")
 
-import random
 seed = 66666
 
 random.seed(seed)
@@ -70,10 +74,6 @@ for key in Comp_task:
 All_task_list = []
 for key in All_task:
     All_task_list.append(key)
-
-
-import matplotlib.pyplot as plt
-import numpy
 
 def show_results_matrix(results, start=0):
     matrix = numpy.zeros([len(results), len(results)], dtype=float)
