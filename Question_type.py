@@ -4,18 +4,16 @@ import random
 import matplotlib.pyplot as plt
 import numpy
 
-# --- Robust Path Correction ---
-# Get the absolute path to the directory where this script is located.
-# This makes the script independent of where it's run from.
-script_dir = os.path.dirname(os.path.abspath(__file__))
+# --- ROBUST PATH CORRECTION (FINAL) ---
+# This script is in the project root. Its directory is the base for all relative paths.
+# __file__ gives the path to this script. os.path.dirname gets its directory.
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# Construct the full, absolute path to the JSON files by joining the script's directory
-# with the relative path to the datasets folder. The '..' moves up one level from
-# where the training script calls this, to the project root.
-project_root = os.path.abspath(os.path.join(script_dir, '..'))
-ques_id_path = os.path.join(project_root, 'datasets', 'QuesId_task_map.json')
-img_id_path = os.path.join(project_root, 'datasets', 'ImgId_cate_map.json')
-# --- End of Correction ---
+# Construct absolute paths to the dataset files from the project root.
+# This ensures they can be found regardless of where the script is run or imported from.
+ques_id_path = os.path.join(PROJECT_ROOT, 'datasets', 'QuesId_task_map.json')
+img_id_path = os.path.join(PROJECT_ROOT, 'datasets', 'ImgId_cate_map.json')
+# --- END OF CORRECTION ---
 
 with open(ques_id_path) as fp:
     QuesId_task_map = json.load(fp)
