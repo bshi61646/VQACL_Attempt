@@ -1,29 +1,4 @@
-import json
-import os
 import random
-import matplotlib.pyplot as plt
-import numpy
-
-# --- ROBUST PATH CORRECTION (FINAL) ---
-# This script is in the project root. Its directory is the base for all relative paths.
-# __file__ gives the path to this script. os.path.dirname gets its directory.
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-# Construct absolute paths to the dataset files from the project root.
-# This ensures they can be found regardless of where the script is run or imported from.
-ques_id_path = os.path.join(PROJECT_ROOT, 'datasets', 'QuesId_task_map.json')
-img_id_path = os.path.join(PROJECT_ROOT, 'datasets', 'ImgId_cate_map.json')
-# --- END OF CORRECTION ---
-
-# This block now uses the correct, absolute paths.
-with open(ques_id_path) as fp:
-    QuesId_task_map = json.load(fp)
-
-with open(img_id_path) as fp:
-    ImgId_cate_map = json.load(fp)
-
-print("Success to load the QuesId_task_map and ImgId_cate_map using absolute paths.")
-
 seed = 66666
 
 random.seed(seed)
@@ -73,6 +48,10 @@ for key in Comp_task:
 All_task_list = []
 for key in All_task:
     All_task_list.append(key)
+
+
+import matplotlib.pyplot as plt
+import numpy
 
 def show_results_matrix(results, start=0):
     matrix = numpy.zeros([len(results), len(results)], dtype=float)
